@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: hello-cronjob
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello-job
+            image: ghcr.io/martinjosefstrba/pythonp:latest
+          imagePullSecrets:
+          - name: ghcr
+          restartPolicy: Never
